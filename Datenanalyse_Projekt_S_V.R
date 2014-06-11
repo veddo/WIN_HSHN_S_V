@@ -17,9 +17,9 @@ BWJ3<-sum(BW$X2010)
 BWJ4<-sum(BW$X2011)
 BWJ5<-sum(BW$X2012)
 
-Jahre<-c(BWJ1,BWJ2,BWJ3,BWJ4,BWJ5)
+BWJahre<-c(BWJ1,BWJ2,BWJ3,BWJ4,BWJ5)
 summary(Jahre)
-plot(Jahre,col=colors,xlab="Jahr")
+plot(BWJahre,col=colors,xlab="Jahr",pch=16)
 
 
 
@@ -31,6 +31,6 @@ BYJ3<-sum(BY$X2010)
 BYJ4<-sum(BY$X2011)
 BYJ5<-sum(BY$X2012)
 
-Jahre<-c(BYJ1,BYJ2,BYJ3,BYJ4,BYJ5)
-summary(Jahre)
-plot(Jahre,col=colors,xlab="Jahr")
+BYJahre<-c(BYJ1,BYJ2,BYJ3,BYJ4,BYJ5)
+summary(BYJahre)
+plot(BYJahre,col=colors,xlab="Jahr",pch=16)
