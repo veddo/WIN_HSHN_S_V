@@ -154,6 +154,17 @@ summary(SAAJahre)
 plot(SAAJahre,col=colors,xlab="Jahr",pch=16)
 lines(SAAJahre,col="grey")
 
+# Schleswig-Holstein
+
+
+SH<-subset(d,d$Bundesland =="Schleswig-Holstein"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SH
+
+SHJahre<-c(SH$X2008,SH$X2009,SH$X2010,SH$X2011,SH$X2012)
+summary(SHJahre)
+plot(SHJahre,col=colors,xlab="Jahr",pch=16)
+lines(SHJahre,col="grey")
+
 
 
 #Thüringen
