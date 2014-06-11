@@ -9,45 +9,31 @@ colors = c("yellow", "orange", "red", "blue", "green")
 #Bundesland Baden Württenberg 
 # Entwicklung von 2008 bis 2012 
 
-BW<-subset(d,d$Bundesland =="Baden-Württemberg")
+BW<-subset(d,d$Bundesland =="Baden-Württemberg"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
+BW
 
-BWJ1<-sum(BW$X2008)
-BWJ2<-sum(BW$X2009)
-BWJ3<-sum(BW$X2010)
-BWJ4<-sum(BW$X2011)
-BWJ5<-sum(BW$X2012)
-
-BWJahre<-c(BWJ1,BWJ2,BWJ3,BWJ4,BWJ5)
-summary(Jahre)
+BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
+summary(BWJahre)
 plot(BWJahre,col=colors,xlab="Jahr",pch=16)
 lines(BWJahre,col="grey")
 
 #Bayern
 # Entwicklung von 2008 bis 2012 
-BY<-subset(d,d$Bundesland =="Bayern")
+BY<-subset(d,d$Bundesland =="Bayern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BY
-BYJ1<-sum(BY$X2008)
-BYJ2<-sum(BY$X2009)
-BYJ3<-sum(BY$X2010)
-BYJ4<-sum(BY$X2011)
-BYJ5<-sum(BY$X2012)
 
-BYJahre<-c(BYJ1,BYJ2,BYJ3,BYJ4,BYJ5)
+
+BYJahre<-c(BY$X2008,BY$X2009,BY$X2010,BY$X2011,BY$X2012)
 summary(BYJahre)
 plot(BYJahre,col=colors,xlab="Jahr",pch=16)
 lines(BYJahre,col="grey")
 
 #Berlin
 # Entwicklung von 2008 bis 2012 
-BER<-subset(d,d$Bundesland =="Berlin")
+BER<-subset(d,d$Bundesland =="Berlin" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BER
-BERJ1<-sum(BER$X2008)
-BERJ2<-sum(BER$X2009)
-BERJ3<-sum(BER$X2010)
-BERJ4<-sum(BER$X2011)
-BERJ5<-sum(BER$X2012)
 
-BERJahre<-c(BERJ1,BERJ2,BERJ3,BERJ4,BERJ5)
+BERJahre<-c(BER$X2008,BER$X2009,BER$X2010,BER$X2011,BER$X2012)
 summary(BERJahre)
 plot(BERJahre,col=colors,xlab="Jahr",pch=16)
 lines(BERJahre,col="grey")
@@ -55,48 +41,132 @@ lines(BERJahre,col="grey")
 #Brandenburg
 # Entwicklung von 2008 bis 2012
 
-BRA<-subset(d,d$Bundesland =="Brandenburg")
+BRA<-subset(d,d$Bundesland =="Brandenburg" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BRA
-BRAJ1<-sum(BRA$X2008)
-BRAJ2<-sum(BRA$X2009)
-BRAJ3<-sum(BRA$X2010)
-BRAJ4<-sum(BRA$X2011)
-BRAJ5<-sum(BRA$X2012)
 
-BRAJahre<-c(BRAJ1,BRAJ2,BRAJ3,BRAJ4,BRAJ5)
+
+BRAJahre<-c(BRA$X2008,BRA$X2009,BRA$X2010,BRA$X2011,BRA$X2012)
 summary(BRAJahre)
 plot(BRAJahre,col=colors,xlab="Jahr",pch=16)
 lines(BRAJahre,col="grey")
 
 # Bremen
 
-BREM<-subset(d,d$Bundesland =="Bremen")
+BREM<-subset(d,d$Bundesland =="Bremen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BREM
-BREMJ1<-sum(BREM$X2008)
-BREMJ2<-sum(BREM$X2009)
-BREMJ3<-sum(BREM$X2010)
-BREMJ4<-sum(BREM$X2011)
-BREMJ5<-sum(BREM$X2012)
 
-BREMJahre<-c(BREMJ1,BREMJ2,BREMJ3,BREMJ4,BREMJ5)
+
+BREMJahre<-c(BREM$X2008,BREM$X2009,BREM$X2010,BREM$X2011,BREM$X2012)
 summary(BREMJahre)
 plot(BREMJahre,col=colors,xlab="Jahr",pch=16)
 lines(BREMJahre,col="grey")
 
 #Hamburg
 
-HH<-subset(d,d$Bundesland =="Hamburg")
+HH<-subset(d,d$Bundesland =="Hamburg" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 HH
-HHJ1<-sum(HH$X2008)
-HHJ2<-sum(HH$X2009)
-HHJ3<-sum(HH$X2010)
-HHJ4<-sum(HH$X2011)
-HHJ5<-sum(HH$X2012)
 
-HHJahre<-c(HHJ1,HHJ2,HHJ3,HHJ4,HHJ5)
+HHJahre<-c(HH$X2008,HH$X2009,HH$X2010,HH$X2011,HH$X2012)
 summary(HHJahre)
 plot(HHJahre,col=colors,xlab="Jahr",pch=16)
 lines(HHJahre,col="grey")
+
+# Hessen
+HE<-subset(d,d$Bundesland =="Hessen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+HE
+
+HEJahre<-c(HE$X2008,HE$X2009,HE$X2010,HE$X2011,HE$X2012)
+summary(HEJahre)
+plot(HEJahre,col=colors,xlab="Jahr",pch=16)
+lines(HEJahre,col="grey")
+
+# Mecklenburg-Vorpommern
+
+
+MV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+MV
+
+MVJahre<-c(MV$X2008,MV$X2009,MV$X2010,MV$X2011,MV$X2012)
+summary(MVJahre)
+plot(MVJahre,col=colors,xlab="Jahr",pch=16)
+lines(MVJahre,col="grey")
+
+# Niedersachsen
+
+NS<-subset(d,d$Bundesland =="Niedersachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+NS
+
+NSJahre<-c(NS$X2008,NS$X2009,NS$X2010,NS$X2011,NS$X2012)
+summary(NSJahre)
+plot(NSJahre,col=colors,xlab="Jahr",pch=16)
+lines(NSJahre,col="grey")
+
+# Nordrhein-Westfalen
+
+
+NRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+NRW
+
+NRWJahre<-c(NRW$X2008,NRW$X2009,NRW$X2010,NRW$X2011,NRW$X2012)
+summary(NRWJahre)
+plot(NRWJahre,col=colors,xlab="Jahr",pch=16)
+lines(NRWJahre,col="grey")
+
+# Rheinland-Pfalz
+
+
+RP<-subset(d,d$Bundesland =="Rheinland-Pfalz"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+RP
+
+RPJahre<-c(RP$X2008,RP$X2009,RP$X2010,RP$X2011,RP$X2012)
+summary(RPJahre)
+plot(RPJahre,col=colors,xlab="Jahr",pch=16)
+lines(RPJahre,col="grey")
+
+
+# Saarland
+
+SA<-subset(d,d$Bundesland =="Saarland"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SA
+
+SAJahre<-c(SA$X2008,SA$X2009,SA$X2010,SA$X2011,SA$X2012)
+summary(SAJahre)
+plot(SAJahre,col=colors,xlab="Jahr",pch=16)
+lines(SAJahre,col="grey")
+
+# Sachsen
+
+SAC<-subset(d,d$Bundesland =="Sachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SAC
+
+SACJahre<-c(SAC$X2008,SAC$X2009,SAC$X2010,SAC$X2011,SAC$X2012)
+summary(SACJahre)
+plot(SACJahre,col=colors,xlab="Jahr",pch=16)
+lines(SACJahre,col="grey")
+
+# Sachsen-Anhalt
+
+SAA<-subset(d,d$Bundesland =="Sachsen-Anhalt"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SAA
+
+SAAJahre<-c(SAA$X2008,SAA$X2009,SAA$X2010,SAA$X2011,SAA$X2012)
+summary(SAAJahre)
+plot(SAAJahre,col=colors,xlab="Jahr",pch=16)
+lines(SAAJahre,col="grey")
+
+
+
+#Thüringen
+
+
+TH<-subset(d,d$Bundesland =="Thüringen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+TH
+
+THJahre<-c(TH$X2008,TH$X2009,TH$X2010,TH$X2011,TH$X2012)
+summary(THJahre)
+plot(THJahre,col=colors,xlab="Jahr",pch=16)
+lines(THJahre,col="grey")
+
 
 
 
