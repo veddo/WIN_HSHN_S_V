@@ -11,10 +11,16 @@ colors = c("yellow", "orange", "red", "blue", "green")
 
 BW<-subset(d,d$Bundesland =="Baden-Württemberg"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
 BW
-
+RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBW 
+RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
 BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
+
+chisq.test(BWJahre,RBWJ)
+
 summary(BWJahre)
-plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg")
+
+plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BWJahre,col="grey")
 
 # 2. Bundesland Bayern
@@ -189,5 +195,5 @@ lines(THJahre,col="grey")
 DE<-THJahre+SHJahre+SAAJahre+SACJahre+BWJahre+BYJahre+BERJahre+BRAJahre+BREMJahre+HHJahre+HEJahre+MVJahre+NSJahre+NRWJahre+RPJahre+SAJahre
 DE
 
-
-
+plot(DE,col=colors)
+lines(DE,col="grey")
