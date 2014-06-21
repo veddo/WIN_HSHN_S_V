@@ -50,6 +50,8 @@ bw<-barplot(test,beside=F,col=colors)
 legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
 
+#----------------------------------------------------------------#
+
 # 2. Bundesland Bayern
 # Entwicklung von 2008 bis 2012 
 BY<-subset(d,d$Bundesland =="Bayern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
@@ -84,24 +86,20 @@ BYrmdD<-c(rmd$X2008,rmd$X2009,rmd$X2010,rmd$X2011,rmd$X2012)
 
 
 #Für gestapelte Saeulendiagramm 
-t<-c(BYmdD,BYrmdD,BYpdD,RBYJ)
-t
-test<-matrix(t, nrow=5,ncol=5, byrow = TRUE )
-test
+byt<-c(BYmdD,BYrmdD,BYpdD,RBYJ)
+byt
+testBY<-matrix(byt, nrow=5,ncol=5, byrow = TRUE )
+testBY
 #Entwicklung in 5 Jahren
-plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
-lines(BWJahre,col="grey")
+plot(BYJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+lines(BYJahre,col="grey")
 
 #Aufteilung
-bw<-barplot(test,beside=F,col=colors)
+by<-barplot(testBY,beside=F,col=colors)
 legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
 
-
-
-
-plot(BYJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Bayern")
-lines(BYJahre,col="grey")
+#----------------------------------------------------------------#
 
 # 3.Bundesland Berlin
 # Entwicklung von 2008 bis 2012 
