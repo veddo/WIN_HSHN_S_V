@@ -16,28 +16,30 @@ RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfäll
 #Vektoren  
 RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
 BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
+BWJahre
 RBWJ
 
-#Baden-Württemberg;Schwerwiegende Unfälle mit Sachschaden i.e.S
-md<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
-md
-mdD<-c(md$X2008,md$X2009,md$X2010,md$X2011,md$X2012)
-mdD
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+BWmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+BWmd
+BWmdD<-c(md$X2008,md$X2009,md$X2010,md$X2011,md$X2012)
+BWmdD
 
 #Unfälle mit Personenschaden
-pd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
-pd
-pdD<-c(pd$X2008,pd$X2009,pd$X2010,md$X2011,pd$X2012)
-pdD
+BWpd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+BWpd
+BWpdD<-c(BWpd$X2008,BWpd$X2009,BWpd$X2010,BWpd$X2011,BWpd$X2012)
+BWpdD
 
 #Übrige Sachschadensunfälle
-rmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
-rmdD<-c(rmd$X2008,rmd$X2009,rmd$X2010,rmd$X2011,rmd$X2012)
-
+BWrmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+BWrmd
+BWrmdD<-c(BWrmd$X2008,BWrmd$X2009,BWrmd$X2010,BWrmd$X2011,BWrmd$X2012)
+BWrmdD
 
 
 #Für gestapelte Saeulendiagramm 
-t<-c(mdD,rmdD,pdD,RBWJ)
+t<-c(BWmdD,BWrmdD,BWpdD,RBWJ)
 t
 test<-matrix(t, nrow=5,ncol=5, byrow = TRUE )
 test
@@ -59,9 +61,10 @@ BY
 
 # Unfälle insgesammt Bayern
 BYJahre<-c(BY$X2008,BY$X2009,BY$X2010,BY$X2011,BY$X2012)
-
+BYJahre
 #Drogeneinfluss
 RBY<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBY
 #Vektoren  
 RBYJ<-c(RBY$X2008,RBY$X2009,RBY$X2010,RBY$X2011,RBY$X2012)
 RBYJ
@@ -75,14 +78,15 @@ BYmdD
 
 #Unfälle mit Personenschaden
 BYpd<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
-
-BYpdD<-c(pd$X2008,pd$X2009,pd$X2010,md$X2011,pd$X2012)
+BYpd
+BYpdD<-c(pd$X2008,pd$X2009,pd$X2010,pd$X2011,pd$X2012)
 BYpdD
 
 #Übrige Sachschadensunfälle
 BYrmd<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
-BYrmdD<-c(rmd$X2008,rmd$X2009,rmd$X2010,rmd$X2011,rmd$X2012)
-
+BYrmd
+BYrmdD<-c(BYrmd$X2008,BYrmd$X2009,BYrmd$X2010,BYrmd$X2011,BYrmd$X2012)
+BYrmdD
 
 
 #Für gestapelte Saeulendiagramm 
@@ -107,9 +111,49 @@ BER<-subset(d,d$Bundesland =="Berlin" & d$Lage=="Insgesamt" & d$Unfälle =="Insg
 BER
 
 BERJahre<-c(BER$X2008,BER$X2009,BER$X2010,BER$X2011,BER$X2012)
-summary(BERJahre)
-plot(BERJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Berlin")
+
+
+#Drogeneinfluss
+RBER<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBER
+#Vektoren  
+RBERJ<-c(RBER$X2008,RBER$X2009,RBER$X2010,RBER$X2011,RBER$X2012)
+RBERJ
+
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+BERmd<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+BERmd
+BERmdD<-c(BERmd$X2008,BERmd$X2009,BERmd$X2010,BERmd$X2011,BERmd$X2012)
+BERmdD
+
+#Unfälle mit Personenschaden
+BERpd<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+BERpd
+BERpdD<-c(BERpd$X2008,BERpd$X2009,BERpd$X2010,BERpd$X2011,BERpd$X2012)
+BERpdD
+
+#Übrige Sachschadensunfälle
+BERrmd<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+BERrmd
+BERrmdD<-c(BERrmd$X2008,BERrmd$X2009,BERrmd$X2010,BERrmd$X2011,BERrmd$X2012)
+BERrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+bert<-c(BERmdD,BERrmdD,BERpdD,RBERJ)
+bert
+testBER<-matrix(bert, nrow=5,ncol=5, byrow = TRUE )
+testBER
+#Entwicklung in 5 Jahren
+plot(BERJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="BERLIN",cex=1)
 lines(BERJahre,col="grey")
+
+#Aufteilung
+ber<-barplot(testBER,beside=F,col=colors)
+legend(4,110000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-----------------------------------------------------------------------------------#
 
 # 4. Bundesland Brandenburg
 # Entwicklung von 2008 bis 2012
@@ -118,10 +162,52 @@ BRA<-subset(d,d$Bundesland =="Brandenburg" & d$Lage=="Insgesamt" & d$Unfälle ==
 BRA
 
 
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RBRA<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+
+#Vektoren  
+#Rauschmittel
+RBRAJ<-c(RBRA$X2008,RBRA$X2009,RBRA$X2010,RBRA$X2011,RBRA$X2012)
+RBRAJ
+#Umfälle in 5 Jahren
+
 BRAJahre<-c(BRA$X2008,BRA$X2009,BRA$X2010,BRA$X2011,BRA$X2012)
-summary(BRAJahre)
-plot(BRAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Brandenburg")
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+BRAmd<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+BRAmd
+
+BRAmdD<-c(BRAmd$X2008,BRAmd$X2009,BRAmd$X2010,BRAmd$X2011,BRAmd$X2012)
+BRAmdD
+
+#Unfälle mit Personenschaden
+BRApd<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+BRApd
+BRApdD<-c(BRApd$X2008,BRApd$X2009,BRApd$X2010,BRApd$X2011,BRApd$X2012)
+BRApdD
+
+#Übrige Sachschadensunfälle
+BRArmd<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+BRArmdD<-c(BRArmd$X2008,BRArmd$X2009,BRArmd$X2010,BRArmd$X2011,BRArmd$X2012)
+
+
+
+#Für gestapelte Saeulendiagramm 
+brat<-c(BRAmdD,BRArmdD,BRApdD,RBRAJ)
+brat
+BRAtest<-matrix(brat, nrow=5,ncol=5, byrow = TRUE )
+BRAtest
+#Entwicklung in 5 Jahren
+plot(BRAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BRAJahre,col="grey")
+
+#Aufteilung
+bra<-barplot(BRAtest,beside=F,col=colors)
+legend(4.5,80000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#---------------------------------------------------------------------------#
+
 
 # 5. Bundesland Bremen
 # Entwicklung von 2008 bis 2012
