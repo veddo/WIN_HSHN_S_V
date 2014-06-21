@@ -215,10 +215,54 @@ legend(4.5,80000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 BREM<-subset(d,d$Bundesland =="Bremen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BREM
 
+
+
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RBREM<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBREM
+#Vektoren  
+#Rauschmittel
+RBREMJ<-c(RBREM$X2008,RBREM$X2009,RBREM$X2010,RBREM$X2011,RBREM$X2012)
+RBREMJ
+#Umfälle in 5 Jahren
 BREMJahre<-c(BREM$X2008,BREM$X2009,BREM$X2010,BREM$X2011,BREM$X2012)
-summary(BREMJahre)
-plot(BREMJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Bremen")
+BREMJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+BREMmd<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+BREMmd
+
+BREMmdD<-c(BREMmd$X2008,BREMmd$X2009,BREMmd$X2010,BREMmd$X2011,BREMmd$X2012)
+BREMmdD
+
+#Unfälle mit Personenschaden
+BREMpd<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+BREMpd
+BREMpdD<-c(BREMpd$X2008,BREMpd$X2009,BREMpd$X2010,BREMpd$X2011,BREMpd$X2012)
+BREMpdD
+
+#Übrige Sachschadensunfälle
+BREMrmd<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+BREMrmd
+BREMrmdD<-c(BREMrmd$X2008,BREMrmd$X2009,BREMrmd$X2010,BREMrmd$X2011,BREMrmd$X2012)
+BREMrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+bremt<-c(BREMmdD,BREMrmdD,BREMpdD,RBREMJ)
+bremt
+BREMtest<-matrix(bremt, nrow=5,ncol=5, byrow = TRUE )
+BREMtest
+#Entwicklung in 5 Jahren
+plot(BREMJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BREMJahre,col="grey")
+
+#Aufteilung
+brem<-barplot(BREMtest,beside=F,col=colors)
+legend(4.5,10000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#---------------------------------------------------------------------#
 
 # 6. Bundesland Hamburg
 # Entwicklung von 2008 bis 2012
@@ -226,10 +270,54 @@ lines(BREMJahre,col="grey")
 HH<-subset(d,d$Bundesland =="Hamburg" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 HH
 
+
+
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RHH<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RHH
+#Vektoren  
+#Rauschmittel
+RHHJ<-c(RHH$X2008,RHH$X2009,RHH$X2010,RHH$X2011,RHH$X2012)
+RHHJ
+#Umfälle in 5 Jahren
 HHJahre<-c(HH$X2008,HH$X2009,HH$X2010,HH$X2011,HH$X2012)
-summary(HHJahre)
-plot(HHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Hamburg")
+HHJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+HHmd<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+HHmd
+
+HHmdD<-c(HHmd$X2008,HHmd$X2009,HHmd$X2010,HHmd$X2011,HHmd$X2012)
+HHmdD
+
+#Unfälle mit Personenschaden
+HHpd<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+HHpd
+HHpdD<-c(HHpd$X2008,HHpd$X2009,HHpd$X2010,HHpd$X2011,HHpd$X2012)
+HHpdD
+
+#Übrige Sachschadensunfälle
+HHrmd<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+HHrmd
+HHrmdD<-c(HHrmd$X2008,HHrmd$X2009,HHrmd$X2010,HHrmd$X2011,HHrmd$X2012)
+HHrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+hht<-c(HHmdD,HHrmdD,HHpdD,RHHJ)
+hht
+HHtest<-matrix(hht, nrow=5,ncol=5, byrow = TRUE )
+HHtest
+#Entwicklung in 5 Jahren
+plot(HHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(HHJahre,col="grey")
+
+#Aufteilung
+hh<-barplot(HHtest,beside=F,col=colors)
+legend(4.5,25000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------#
 
 # 7. Bundesland Hessen
 # Entwicklung von 2008 bis 2012
@@ -237,10 +325,54 @@ lines(HHJahre,col="grey")
 HE<-subset(d,d$Bundesland =="Hessen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 HE
 
+#Unfälle unter dem Einfluss berausch. Mittel
+RHE<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RHE
+#Vektoren  
+#Rauschmittel
+RHEJ<-c(RHE$X2008,RHE$X2009,RHE$X2010,RHE$X2011,RHE$X2012)
+RHEJ
+#Umfälle in 5 Jahren
 HEJahre<-c(HE$X2008,HE$X2009,HE$X2010,HE$X2011,HE$X2012)
-summary(HEJahre)
-plot(HEJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Hessen")
+HEJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+HEmd<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+HEmd
+
+HEmdD<-c(HEmd$X2008,HEmd$X2009,HEmd$X2010,HEmd$X2011,HEmd$X2012)
+HEmdD
+
+#Unfälle mit Personenschaden
+HEpd<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+HEpd
+
+HEpdD<-c(HEpd$X2008,HEpd$X2009,HEpd$X2010,HEpd$X2011,HEpd$X2012)
+HEpdD
+
+#Übrige Sachschadensunfälle
+HErmd<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+HErmd
+
+HErmdD<-c(HErmd$X2008,HErmd$X2009,HErmd$X2010,HErmd$X2011,HErmd$X2012)
+HErmdD
+
+
+#Für gestapelte Saeulendiagramm 
+het<-c(HEmdD,HErmdD,HEpdD,RHEJ)
+het
+HEtest<-matrix(het, nrow=5,ncol=5, byrow = TRUE )
+HEtest
+#Entwicklung in 5 Jahren
+plot(HEJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(HEJahre,col="grey")
+
+#Aufteilung
+he<-barplot(HEtest,beside=F,col=colors)
+legend(4.5,55000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+
+#-------------------------------------------------------------------------#
 
 # 8. Bundesland Mecklenburg-Vorpommern
 # Entwicklung von 2008 bis 2012
@@ -248,10 +380,54 @@ lines(HEJahre,col="grey")
 MV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 MV
 
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RMV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RMV
+#Vektoren  
+#Rauschmittel
+RMVJ<-c(RMV$X2008,RMV$X2009,RMV$X2010,RMV$X2011,RMV$X2012)
+RMVJ
+#Umfälle in 5 Jahren
 MVJahre<-c(MV$X2008,MV$X2009,MV$X2010,MV$X2011,MV$X2012)
-summary(MVJahre)
-plot(MVJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Mecklenburg-Vorpommern")
+MVJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+MVmd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+MVmd
+
+MVmdD<-c(MVmd$X2008,MVmd$X2009,MVmd$X2010,MVmd$X2011,MVmd$X2012)
+MVmdD
+
+#Unfälle mit Personenschaden
+MVpd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+MVpd
+
+MVpdD<-c(MVpd$X2008,MVpd$X2009,MVpd$X2010,MVpd$X2011,MVpd$X2012)
+MVpdD
+
+#Übrige Sachschadensunfälle
+MVrmd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+MVrmd
+
+MVrmdD<-c(MVrmd$X2008,MVrmd$X2009,MVrmd$X2010,MVrmd$X2011,MVrmd$X2012)
+MVrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+mvt<-c(MVmdD,MVrmdD,MVpdD,RMVJ)
+mvt
+MVtest<-matrix(mvt, nrow=5,ncol=5, byrow = TRUE )
+MVtest
+#Entwicklung in 5 Jahren
+plot(MVJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(MVJahre,col="grey")
+
+#Aufteilung
+mv<-barplot(MVtest,beside=F,col=colors)
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#------------------------------------------------------------------#
 
 # 9. Bundesland Niedersachsen
 # Entwicklung von 2008 bis 2012
