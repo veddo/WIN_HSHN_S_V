@@ -2,35 +2,104 @@
 setwd("/home/vhx/Dokumente/R-Statistik/Projekt_S_V/WIN_HSHN_S_V/")
 d<-read.csv2("unfalldaten.csv",encoding="utf-8")
 d
-colors = c("yellow", "orange", "red", "blue", "green")
+colors = c("yellow", "orange", "red", "blue","green")
 
-
+options(scipen=999)
 
 # 1.Bundesland Baden Württenberg 
 # Entwicklung von 2008 bis 2012 
 
 BW<-subset(d,d$Bundesland =="Baden-Württemberg"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
-BW
+
+#Unfälle unter dem Einfluss berausch. Mittel
 RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
-RBW 
+#Vektoren  
 RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
 BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
+RBWJ
 
-chisq.test(BWJahre,RBWJ)
+#Baden-Württemberg;Schwerwiegende Unfälle mit Sachschaden i.e.S
+md<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+md
+mdD<-c(md$X2008,md$X2009,md$X2010,md$X2011,md$X2012)
+mdD
 
-summary(BWJahre)
+#Unfälle mit Personenschaden
+pd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+pd
+pdD<-c(pd$X2008,pd$X2009,pd$X2010,md$X2011,pd$X2012)
+pdD
 
+#Übrige Sachschadensunfälle
+rmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+rmdD<-c(rmd$X2008,rmd$X2009,rmd$X2010,rmd$X2011,rmd$X2012)
+
+
+
+#Für gestapelte Saeulendiagramm 
+t<-c(mdD,rmdD,pdD,RBWJ)
+t
+test<-matrix(t, nrow=5,ncol=5, byrow = TRUE )
+test
+#Entwicklung in 5 Jahren
 plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BWJahre,col="grey")
+
+#Aufteilung
+bw<-barplot(test,beside=F,col=colors)
+legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
 
 # 2. Bundesland Bayern
 # Entwicklung von 2008 bis 2012 
 BY<-subset(d,d$Bundesland =="Bayern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BY
 
-
+# Unfälle insgesammt Bayern
 BYJahre<-c(BY$X2008,BY$X2009,BY$X2010,BY$X2011,BY$X2012)
-summary(BYJahre)
+
+#Drogeneinfluss
+RBY<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+#Vektoren  
+RBYJ<-c(RBY$X2008,RBY$X2009,RBY$X2010,RBY$X2011,RBY$X2012)
+RBYJ
+
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+BYmd<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+BYmd
+BYmdD<-c(md$X2008,md$X2009,md$X2010,md$X2011,md$X2012)
+BYmdD
+
+#Unfälle mit Personenschaden
+BYpd<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+
+BYpdD<-c(pd$X2008,pd$X2009,pd$X2010,md$X2011,pd$X2012)
+BYpdD
+
+#Übrige Sachschadensunfälle
+BYrmd<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+BYrmdD<-c(rmd$X2008,rmd$X2009,rmd$X2010,rmd$X2011,rmd$X2012)
+
+
+
+#Für gestapelte Saeulendiagramm 
+t<-c(BYmdD,BYrmdD,BYpdD,RBYJ)
+t
+test<-matrix(t, nrow=5,ncol=5, byrow = TRUE )
+test
+#Entwicklung in 5 Jahren
+plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+lines(BWJahre,col="grey")
+
+#Aufteilung
+bw<-barplot(test,beside=F,col=colors)
+legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+
+
+
+
 plot(BYJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Bayern")
 lines(BYJahre,col="grey")
 
