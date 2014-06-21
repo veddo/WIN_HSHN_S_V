@@ -435,10 +435,54 @@ legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 NS<-subset(d,d$Bundesland =="Niedersachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 NS
 
+#Unfälle unter dem Einfluss berausch. Mittel
+RNS<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RNS
+#Vektoren  
+#Rauschmittel
+RNSJ<-c(RNS$X2008,RNS$X2009,RNS$X2010,RNS$X2011,RNS$X2012)
+RNSJ
+#Umfälle in 5 Jahren
 NSJahre<-c(NS$X2008,NS$X2009,NS$X2010,NS$X2011,NS$X2012)
-summary(NSJahre)
-plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Niedersachsen")
+NSJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+NSmd<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+NSmd
+
+NSmdD<-c(NSmd$X2008,NSmd$X2009,NSmd$X2010,NSmd$X2011,NSmd$X2012)
+NSmdD
+
+#Unfälle mit Personenschaden
+NSpd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+NSpd
+
+NSpdD<-c(NSpd$X2008,NSpd$X2009,NSpd$X2010,NSpd$X2011,NSpd$X2012)
+NSpdD
+
+#Übrige Sachschadensunfälle
+NSrmd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+NSrmd
+
+NSrmdD<-c(NSrmd$X2008,NSrmd$X2009,NSrmd$X2010,NSrmd$X2011,NSrmd$X2012)
+NSrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+nst<-c(NSmdD,NSrmdD,NSpdD,RNSJ)
+nst
+NStest<-matrix(nst, nrow=5,ncol=5, byrow = TRUE )
+NStest
+#Entwicklung in 5 Jahren
+plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(NSJahre,col="grey")
+
+#Aufteilung
+mv<-barplot(NStest,beside=F,col=colors)
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
+
 
 # 10. Bundesland Nordrhein-Westfalen
 # Entwicklung von 2008 bis 2012
