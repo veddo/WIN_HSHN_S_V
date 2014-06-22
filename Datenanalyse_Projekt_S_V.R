@@ -490,10 +490,55 @@ legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 NRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 NRW
 
+
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RNRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RNRW
+#Vektoren  
+#Rauschmittel
+RNRWJ<-c(RNRW$X2008,RNRW$X2009,RNRW$X2010,RNRW$X2011,RNRW$X2012)
+RNRWJ
+#Umfälle in 5 Jahren
 NRWJahre<-c(NRW$X2008,NRW$X2009,NRW$X2010,NRW$X2011,NRW$X2012)
-summary(NRWJahre)
-plot(NRWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Nordrhein-Westfalen")
-lines(NRWJahre,col="grey")
+NRWJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+NRWmd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+NRWmd
+
+NRWmdD<-c(NRWmd$X2008,NRWmd$X2009,NRWmd$X2010,NRWmd$X2011,NRWmd$X2012)
+NRWmdD
+
+#Unfälle mit Personenschaden
+NRWpd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+NRWpd
+
+NRWpdD<-c(NRWpd$X2008,NRWpd$X2009,NRWpd$X2010,NRWpd$X2011,NRWpd$X2012)
+NRWpdD
+
+#Übrige Sachschadensunfälle
+NRWrmd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+NRWrmd
+
+NRWrmdD<-c(NRWrmd$X2008,NRWrmd$X2009,NRWrmd$X2010,NRWrmd$X2011,NRWrmd$X2012)
+NRWrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+nrwt<-c(NRWmdD,NRWrmdD,NRWpdD,RNRWJ)
+nrwt
+NRWtest<-matrix(nrwt, nrow=5,ncol=5, byrow = TRUE )
+NRWtest
+#Entwicklung in 5 Jahren
+plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+lines(NSJahre,col="grey")
+
+#Aufteilung
+mv<-barplot(NStest,beside=F,col=colors)
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
 
 # 11. Rheinland-Pfalz
 # Entwicklung von 2008 bis 2012
@@ -501,10 +546,55 @@ lines(NRWJahre,col="grey")
 RP<-subset(d,d$Bundesland =="Rheinland-Pfalz"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 RP
 
+
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RRP<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RRP
+#Vektoren  
+#Rauschmittel
+RRPJ<-c(RRP$X2008,RRP$X2009,RRP$X2010,RRP$X2011,RRP$X2012)
+RRPJ
+#Umfälle in 5 Jahren
 RPJahre<-c(RP$X2008,RP$X2009,RP$X2010,RP$X2011,RP$X2012)
-summary(RPJahre)
-plot(RPJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Rheinland-Pfalz")
+RPJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+RPmd<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+RPmd
+
+RPmdD<-c(RPmd$X2008,RPmd$X2009,RPmd$X2010,RPmd$X2011,RPmd$X2012)
+RPmdD
+
+#Unfälle mit Personenschaden
+RPpd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+RPpd
+
+RPpdD<-c(RPpd$X2008,RPpd$X2009,RPpd$X2010,RPpd$X2011,RPpd$X2012)
+RPpdD
+
+#Übrige Sachschadensunfälle
+RPrmd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+RPrmd
+
+RPrmdD<-c(RPrmd$X2008,RPrmd$X2009,RPrmd$X2010,RPrmd$X2011,RPrmd$X2012)
+RPrmdD
+
+
+#Für gestapelte Saeulendiagramm 
+rpt<-c(RPmdD,RPrmdD,RPpdD,RRPJ)
+rpt
+RPtest<-matrix(rpt, nrow=5,ncol=5, byrow = TRUE )
+RPtest
+#Entwicklung in 5 Jahren
+plot(RPJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(RPJahre,col="grey")
+
+#Aufteilung
+barplot(RPtest,beside=F,col=colors)
+legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
 
 
 # 12. Bundesland Saarland
