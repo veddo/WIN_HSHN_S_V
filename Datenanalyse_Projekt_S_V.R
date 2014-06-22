@@ -579,7 +579,7 @@ RPrmd
 
 RPrmdD<-c(RPrmd$X2008,RPrmd$X2009,RPrmd$X2010,RPrmd$X2011,RPrmd$X2012)
 RPrmdD
-
+#
 
 #Für gestapelte Saeulendiagramm 
 rpt<-c(RPmdD,RPrmdD,RPpdD,RRPJ)
