@@ -490,8 +490,6 @@ legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 NRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 NRW
 
-
-
 #Unfälle unter dem Einfluss berausch. Mittel
 RNRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
 RNRW
@@ -603,10 +601,54 @@ legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 SA<-subset(d,d$Bundesland =="Saarland"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SA
 
+#Unfälle unter dem Einfluss berausch. Mittel
+RSA<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSA
+#Vektoren  
+#Rauschmittel
+RSAJ<-c(RSA$X2008,RSA$X2009,RSA$X2010,RSA$X2011,RSA$X2012)
+RSAJ
+#Umfälle in 5 Jahren
 SAJahre<-c(SA$X2008,SA$X2009,SA$X2010,SA$X2011,SA$X2012)
-summary(SAJahre)
-plot(SAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Saarland")
+SAJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+SAmd<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+SAmd
+
+SAmdD<-c(SAmd$X2008,SAmd$X2009,SAmd$X2010,SAmd$X2011,SAmd$X2012)
+SAmdD
+
+#Unfälle mit Personenschaden
+SApd<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+SApd
+
+SApdD<-c(SApd$X2008,SApd$X2009,SApd$X2010,SApd$X2011,SApd$X2012)
+SApdD
+
+#Übrige Sachschadensunfälle
+SArmd<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+SArmd
+
+SArmdD<-c(SArmd$X2008,SArmd$X2009,SArmd$X2010,SArmd$X2011,SArmd$X2012)
+SArmdD
+#
+
+#Für gestapelte Saeulendiagramm 
+sat<-c(SAmdD,SArmdD,SApdD,RSAJ)
+sat
+SAtest<-matrix(sat, nrow=5,ncol=5, byrow = TRUE )
+SAtest
+#Entwicklung in 5 Jahren
+plot(SAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(SAJahre,col="grey")
+
+#Aufteilung
+barplot(SAtest,beside=F,col=colors)
+legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
+
 
 # 13. Bundesland Sachsen
 # Entwicklung von 2008 bis 2012
