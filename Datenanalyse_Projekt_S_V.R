@@ -656,11 +656,55 @@ legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 SAC<-subset(d,d$Bundesland =="Sachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SAC
 
+
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RSAC<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSAC
+#Vektoren  
+#Rauschmittel
+RSACJ<-c(RSAC$X2008,RSAC$X2009,RSAC$X2010,RSAC$X2011,RSAC$X2012)
+RSACJ
+#Umfälle in 5 Jahren
 SACJahre<-c(SAC$X2008,SAC$X2009,SAC$X2010,SAC$X2011,SAC$X2012)
-summary(SACJahre)
-plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Sachsen")
+SACJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+SACmd<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+SACmd
+
+SACmdD<-c(SACmd$X2008,SACmd$X2009,SACmd$X2010,SACmd$X2011,SACmd$X2012)
+SACmdD
+
+#Unfälle mit Personenschaden
+SACpd<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+SACpd
+
+SACpdD<-c(SACpd$X2008,SACpd$X2009,SACpd$X2010,SACpd$X2011,SACpd$X2012)
+SACpdD
+
+#Übrige Sachschadensunfälle
+SACrmd<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+SACrmd
+
+SACrmdD<-c(SACrmd$X2008,SACrmd$X2009,SACrmd$X2010,SACrmd$X2011,SACrmd$X2012)
+SACrmdD
+#
+
+#Für gestapelte Saeulendiagramm 
+sact<-c(SACmdD,SACrmdD,SACpdD,RSACJ)
+sact
+SACtest<-matrix(sact, nrow=5,ncol=5, byrow = TRUE )
+SAtest
+#Entwicklung in 5 Jahren
+plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(SACJahre,col="grey")
 
+#Aufteilung
+barplot(SACtest,beside=F,col=colors,main="Sachsen")
+legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
 # 14. Bundesland Sachsen-Anhalt
 # Entwicklung von 2008 bis 2012
 
@@ -668,22 +712,108 @@ SAA<-subset(d,d$Bundesland =="Sachsen-Anhalt"  & d$Lage=="Insgesamt" & d$Unfäll
 SAA
 
 SAAJahre<-c(SAA$X2008,SAA$X2009,SAA$X2010,SAA$X2011,SAA$X2012)
-summary(SAAJahre)
-plot(SAAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Sachsen-Anhalt")
-lines(SAAJahre,col="grey")
 
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RSAA<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSAA
+#Vektoren  
+#Rauschmittel
+RSAAJ<-c(RSAA$X2008,RSAA$X2009,RSAA$X2010,RSAA$X2011,RSAA$X2012)
+RSAAJ
+#Umfälle in 5 Jahren
+SAAJahre<-c(SAA$X2008,SAA$X2009,SAA$X2010,SAA$X2011,SAA$X2012)
+SAAJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+SAAmd<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+SAAmd
+
+SAAmdD<-c(SAAmd$X2008,SAAmd$X2009,SAAmd$X2010,SAAmd$X2011,SAAmd$X2012)
+SAAmdD
+
+#Unfälle mit Personenschaden
+SAApd<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+SAApd
+
+SAApdD<-c(SAApd$X2008,SAApd$X2009,SAApd$X2010,SAApd$X2011,SAApd$X2012)
+SAApdD
+
+#Übrige Sachschadensunfälle
+SAArmd<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+SAArmd
+
+SAArmdD<-c(SAArmd$X2008,SAArmd$X2009,SAArmd$X2010,SAArmd$X2011,SAArmd$X2012)
+SAArmdD
+#
+
+#Für gestapelte Saeulendiagramm 
+saat<-c(SAAmdD,SAArmdD,SAApdD,RSAAJ)
+saat
+SAAtest<-matrix(saat, nrow=5,ncol=5, byrow = TRUE )
+SAtest
+#Entwicklung in 5 Jahren
+plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+lines(SACJahre,col="grey")
+
+#Aufteilung
+barplot(SAAtest,beside=F,col=colors,main="Sachsen")
+legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
 # 15. Bundesland Schleswig-Holstein
 # Entwicklung von 2008 bis 2012
 
 SH<-subset(d,d$Bundesland =="Schleswig-Holstein"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SH
 
+#Unfälle unter dem Einfluss berausch. Mittel
+RSH<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSH
+#Vektoren  
+#Rauschmittel
+RSHJ<-c(RSH$X2008,RSH$X2009,RSH$X2010,RSH$X2011,RSH$X2012)
+RSHJ
+#Umfälle in 5 Jahren
 SHJahre<-c(SH$X2008,SH$X2009,SH$X2010,SH$X2011,SH$X2012)
-summary(SHJahre)
-plot(SHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Schleswig-Holstein")
+SHJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+SHmd<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+SHmd
+
+SHmdD<-c(SHmd$X2008,SHmd$X2009,SHmd$X2010,SHmd$X2011,SHmd$X2012)
+SHmdD
+
+#Unfälle mit Personenschaden
+SHpd<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+SHpd
+
+SHpdD<-c(SHpd$X2008,SHpd$X2009,SHpd$X2010,SHpd$X2011,SHpd$X2012)
+SHpdD
+
+#Übrige Sachschadensunfälle
+SHrmd<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+SHrmd
+
+SHrmdD<-c(SHrmd$X2008,SHrmd$X2009,SHrmd$X2010,SHrmd$X2011,SHrmd$X2012)
+SHrmdD
+#
+
+#Für gestapelte Saeulendiagramm 
+sht<-c(SHmdD,SHrmdD,SHpdD,RSHJ)
+saat
+SHtest<-matrix(saat, nrow=5,ncol=5, byrow = TRUE )
+SHtest
+#Entwicklung in 5 Jahren
+plot(SHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(SHJahre,col="grey")
 
+#Aufteilung
+barplot(SHtest,beside=F,col=colors,main="Sachsen")
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
+#-------------------------------------------------------------------------------#
 
 # 16 Bundesland Thüringen
 # Entwicklung von 2008 bis 2012
