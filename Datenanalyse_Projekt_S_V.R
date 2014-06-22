@@ -802,8 +802,8 @@ SHrmdD
 
 #Für gestapelte Saeulendiagramm 
 sht<-c(SHmdD,SHrmdD,SHpdD,RSHJ)
-saat
-SHtest<-matrix(saat, nrow=5,ncol=5, byrow = TRUE )
+sht
+SHtest<-matrix(sht, nrow=5,ncol=5, byrow = TRUE )
 SHtest
 #Entwicklung in 5 Jahren
 plot(SHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
@@ -821,12 +821,55 @@ legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 TH<-subset(d,d$Bundesland =="Thüringen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 TH
 
+#Unfälle unter dem Einfluss berausch. Mittel
+RTH<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RTH
+#Vektoren  
+#Rauschmittel
+RTHJ<-c(RTH$X2008,RTH$X2009,RTH$X2010,RTH$X2011,RTH$X2012)
+RTHJ
+#Umfälle in 5 Jahren
 THJahre<-c(TH$X2008,TH$X2009,TH$X2010,TH$X2011,TH$X2012)
-summary(THJahre)
-plot(THJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Thüringen")
+THJahre
+
+#Schwerwiegende Unfälle mit Sachschaden i.e.S
+THmd<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
+THmd
+
+THmdD<-c(THmd$X2008,THmd$X2009,THmd$X2010,THmd$X2011,THmd$X2012)
+THmdD
+
+#Unfälle mit Personenschaden
+THpd<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+THpd
+
+THpdD<-c(THpd$X2008,THpd$X2009,THpd$X2010,THpd$X2011,THpd$X2012)
+THpdD
+
+#Übrige Sachschadensunfälle
+THrmd<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+THrmd
+
+THrmdD<-c(THrmd$X2008,THrmd$X2009,THrmd$X2010,THrmd$X2011,THrmd$X2012)
+THrmdD
+#
+
+#Für gestapelte Saeulendiagramm 
+tht<-c(THmdD,THrmdD,THpdD,RTHJ)
+tht
+THtest<-matrix(tht, nrow=5,ncol=5, byrow = TRUE )
+THtest
+#Entwicklung in 5 Jahren
+plot(THJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(THJahre,col="grey")
 
-#Ganz Deutschland
+#Aufteilung
+barplot(THtest,beside=F,col=colors,main="Sachsen")
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+#-------------------------------------------------------------------------------#
+
+#Ganz Deutschland Statistiken
 DE<-THJahre+SHJahre+SAAJahre+SACJahre+BWJahre+BYJahre+BERJahre+BRAJahre+BREMJahre+HHJahre+HEJahre+MVJahre+NSJahre+NRWJahre+RPJahre+SAJahre
 DE
 
