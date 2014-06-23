@@ -10,9 +10,11 @@ options(scipen=999)
 # Entwicklung von 2008 bis 2012 
 
 BW<-subset(d,d$Bundesland =="Baden-Württemberg"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
+BW
 
 #Unfälle unter dem Einfluss berausch. Mittel
 RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBW
 #Vektoren  
 RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
 BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
@@ -22,7 +24,7 @@ RBWJ
 #Schwerwiegende Unfälle mit Sachschaden i.e.S
 BWmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
 BWmd
-BWmdD<-c(md$X2008,md$X2009,md$X2010,md$X2011,md$X2012)
+BWmdD<-c(BWmd$X2008,BWmd$X2009,BWmd$X2010,BWmd$X2011,BWmd$X2012)
 BWmdD
 
 #Unfälle mit Personenschaden
@@ -40,17 +42,21 @@ BWrmdD
 
 #Für gestapelte Saeulendiagramm 
 t<-c(BWmdD,BWrmdD,BWpdD,RBWJ)
-t
-test<-matrix(t, nrow=5,ncol=5, byrow = TRUE )
-test
+BadenW<-t
+BadenW
+
+BWtest<-matrix(BadenW, nrow=5,ncol=5, byrow = TRUE )
+BWtest
+
+
 #Entwicklung in 5 Jahren
 plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BWJahre,col="grey")
 
 #Aufteilung
-bw<-barplot(test,beside=F,col=colors)
-legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+bw<-barplot(BWtest,a,beside=F,col=colors,main="Baden-Württenberg")
+legend(500000,160000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+BW
 
 #----------------------------------------------------------------#
 
@@ -91,16 +97,17 @@ BYrmdD
 
 #Für gestapelte Saeulendiagramm 
 byt<-c(BYmdD,BYrmdD,BYpdD,RBYJ)
-byt
+Bayern<-byt
 testBY<-matrix(byt, nrow=5,ncol=5, byrow = TRUE )
 testBY
+RBERJ
 #Entwicklung in 5 Jahren
-plot(BYJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(BYJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Bayern",cex=1)
 lines(BYJahre,col="grey")
 
 #Aufteilung
-by<-barplot(testBY,beside=F,col=colors)
-legend(4.5,140000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+by<-barplot(testBY,beside=F,col=colors,main="Bayern")
+legend(4.5,244000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
 
 #----------------------------------------------------------------#
@@ -142,7 +149,7 @@ BERrmdD
 
 #Für gestapelte Saeulendiagramm 
 bert<-c(BERmdD,BERrmdD,BERpdD,RBERJ)
-bert
+Berlin<-bert
 testBER<-matrix(bert, nrow=5,ncol=5, byrow = TRUE )
 testBER
 #Entwicklung in 5 Jahren
@@ -150,8 +157,8 @@ plot(BERJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="BERLIN",cex=1)
 lines(BERJahre,col="grey")
 
 #Aufteilung
-ber<-barplot(testBER,beside=F,col=colors)
-legend(4,110000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+ber<-barplot(testBER,beside=F,col=colors,main="Berlin")
+legend(4,11000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
 #-----------------------------------------------------------------------------------#
 
@@ -195,16 +202,16 @@ BRArmdD<-c(BRArmd$X2008,BRArmd$X2009,BRArmd$X2010,BRArmd$X2011,BRArmd$X2012)
 
 #Für gestapelte Saeulendiagramm 
 brat<-c(BRAmdD,BRArmdD,BRApdD,RBRAJ)
-brat
+Brandenburg<-brat
 BRAtest<-matrix(brat, nrow=5,ncol=5, byrow = TRUE )
 BRAtest
 #Entwicklung in 5 Jahren
-plot(BRAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
-lines(BRAJahre,col="grey")
+plot(BRAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Brandenburg",cex=1)
+lines(BRAJahre,col="grey",main="Brandenburg")
 
 #Aufteilung
 bra<-barplot(BRAtest,beside=F,col=colors)
-legend(4.5,80000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+legend(4.5,44000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 
 #---------------------------------------------------------------------------#
 
@@ -251,17 +258,17 @@ BREMrmdD
 
 #Für gestapelte Saeulendiagramm 
 bremt<-c(BREMmdD,BREMrmdD,BREMpdD,RBREMJ)
-bremt
+Bremen<-bremt
 BREMtest<-matrix(bremt, nrow=5,ncol=5, byrow = TRUE )
 BREMtest
 #Entwicklung in 5 Jahren
-plot(BREMJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(BREMJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Bremen",cex=1)
 lines(BREMJahre,col="grey")
 
 #Aufteilung
-brem<-barplot(BREMtest,beside=F,col=colors)
+brem<-barplot(BREMtest,beside=F,col=colors,main="Bremen")
 legend(4.5,10000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+BREM
 #---------------------------------------------------------------------#
 
 # 6. Bundesland Hamburg
@@ -306,17 +313,17 @@ HHrmdD
 
 #Für gestapelte Saeulendiagramm 
 hht<-c(HHmdD,HHrmdD,HHpdD,RHHJ)
-hht
+Hamburg<-hht
 HHtest<-matrix(hht, nrow=5,ncol=5, byrow = TRUE )
 HHtest
 #Entwicklung in 5 Jahren
-plot(HHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(HHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Hamburg",cex=1)
 lines(HHJahre,col="grey")
 
 #Aufteilung
-hh<-barplot(HHtest,beside=F,col=colors)
+hh<-barplot(HHtest,beside=F,col=colors,main="Hamburg")
 legend(4.5,25000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+HH
 #-------------------------------------------------------------------------#
 
 # 7. Bundesland Hessen
@@ -360,17 +367,17 @@ HErmdD
 
 #Für gestapelte Saeulendiagramm 
 het<-c(HEmdD,HErmdD,HEpdD,RHEJ)
-het
+Hessen<-het
 HEtest<-matrix(het, nrow=5,ncol=5, byrow = TRUE )
 HEtest
 #Entwicklung in 5 Jahren
-plot(HEJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(HEJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Hessen",cex=1)
 lines(HEJahre,col="grey")
 
 #Aufteilung
-he<-barplot(HEtest,beside=F,col=colors)
+he<-barplot(HEtest,beside=F,col=colors, main="Hessen")
 legend(4.5,55000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+HE
 
 #-------------------------------------------------------------------------#
 
@@ -416,17 +423,17 @@ MVrmdD
 
 #Für gestapelte Saeulendiagramm 
 mvt<-c(MVmdD,MVrmdD,MVpdD,RMVJ)
-mvt
+MecklenburgVorpommern<-mvt
 MVtest<-matrix(mvt, nrow=5,ncol=5, byrow = TRUE )
 MVtest
 #Entwicklung in 5 Jahren
-plot(MVJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(MVJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Mecklenburg-Vorpommern",cex=1)
 lines(MVJahre,col="grey")
 
 #Aufteilung
-mv<-barplot(MVtest,beside=F,col=colors)
+mv<-barplot(MVtest,beside=F,col=colors,main="Mecklenburg-Vorpommern")
 legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+MV
 #------------------------------------------------------------------#
 
 # 9. Bundesland Niedersachsen
@@ -454,14 +461,14 @@ NSmdD<-c(NSmd$X2008,NSmd$X2009,NSmd$X2010,NSmd$X2011,NSmd$X2012)
 NSmdD
 
 #Unfälle mit Personenschaden
-NSpd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+NSpd<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
 NSpd
 
 NSpdD<-c(NSpd$X2008,NSpd$X2009,NSpd$X2010,NSpd$X2011,NSpd$X2012)
 NSpdD
 
 #Übrige Sachschadensunfälle
-NSrmd<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+NSrmd<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
 NSrmd
 
 NSrmdD<-c(NSrmd$X2008,NSrmd$X2009,NSrmd$X2010,NSrmd$X2011,NSrmd$X2012)
@@ -470,17 +477,17 @@ NSrmdD
 
 #Für gestapelte Saeulendiagramm 
 nst<-c(NSmdD,NSrmdD,NSpdD,RNSJ)
-nst
+Niedersachsen<-nst
 NStest<-matrix(nst, nrow=5,ncol=5, byrow = TRUE )
 NStest
 #Entwicklung in 5 Jahren
-plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Niedersachsen",cex=1)
 lines(NSJahre,col="grey")
 
 #Aufteilung
-mv<-barplot(NStest,beside=F,col=colors)
-legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+barplot(NStest,beside=F,col=colors,main="Niedersachsen")
+legend(4.5,99000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+NS
 #-------------------------------------------------------------------------------#
 
 
@@ -511,7 +518,7 @@ NRWmdD
 #Unfälle mit Personenschaden
 NRWpd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
 NRWpd
-
+Nordrhein-Westfalen;Unfälle mit Personenschaden;Insgesamt;64515;63209;58130;62055;59658
 NRWpdD<-c(NRWpd$X2008,NRWpd$X2009,NRWpd$X2010,NRWpd$X2011,NRWpd$X2012)
 NRWpdD
 
@@ -525,17 +532,18 @@ NRWrmdD
 
 #Für gestapelte Saeulendiagramm 
 nrwt<-c(NRWmdD,NRWrmdD,NRWpdD,RNRWJ)
+NordrheinWestfalen<-nrwt
 nrwt
 NRWtest<-matrix(nrwt, nrow=5,ncol=5, byrow = TRUE )
 NRWtest
 #Entwicklung in 5 Jahren
-plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(NSJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Nordrhein-Westfalen",cex=1)
 lines(NSJahre,col="grey")
 
 #Aufteilung
-mv<-barplot(NStest,beside=F,col=colors)
-legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+nrw<-barplot(NRWtest,beside=F,col=colors,main="Nordrhein-Westfalen")
+legend(4.5,400000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+NRW
 #-------------------------------------------------------------------------------#
 
 # 11. Rheinland-Pfalz
@@ -565,14 +573,14 @@ RPmdD<-c(RPmd$X2008,RPmd$X2009,RPmd$X2010,RPmd$X2011,RPmd$X2012)
 RPmdD
 
 #Unfälle mit Personenschaden
-RPpd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
+RPpd<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
 RPpd
 
 RPpdD<-c(RPpd$X2008,RPpd$X2009,RPpd$X2010,RPpd$X2011,RPpd$X2012)
 RPpdD
 
 #Übrige Sachschadensunfälle
-RPrmd<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
+RPrmd<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
 RPrmd
 
 RPrmdD<-c(RPrmd$X2008,RPrmd$X2009,RPrmd$X2010,RPrmd$X2011,RPrmd$X2012)
@@ -581,17 +589,17 @@ RPrmdD
 
 #Für gestapelte Saeulendiagramm 
 rpt<-c(RPmdD,RPrmdD,RPpdD,RRPJ)
-rpt
+RheinlandPfalz<-rpt
 RPtest<-matrix(rpt, nrow=5,ncol=5, byrow = TRUE )
 RPtest
 #Entwicklung in 5 Jahren
-plot(RPJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(RPJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Rheinland-Pfalz",cex=1)
 lines(RPJahre,col="grey")
 
 #Aufteilung
-barplot(RPtest,beside=F,col=colors)
-legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+barplot(RPtest,beside=F,col=colors,main="Rheinland-Pfalz")
+legend(4.5,65000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+RP
 #-------------------------------------------------------------------------------#
 
 
@@ -636,17 +644,17 @@ SArmdD
 
 #Für gestapelte Saeulendiagramm 
 sat<-c(SAmdD,SArmdD,SApdD,RSAJ)
-sat
+Saarland<-sat
 SAtest<-matrix(sat, nrow=5,ncol=5, byrow = TRUE )
 SAtest
 #Entwicklung in 5 Jahren
-plot(SAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(SAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Saarland",cex=1)
 lines(SAJahre,col="grey")
 
 #Aufteilung
-barplot(SAtest,beside=F,col=colors)
+barplot(SAtest,beside=F,col=colors,main="Saarland")
 legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+SA
 #-------------------------------------------------------------------------------#
 
 
@@ -693,17 +701,17 @@ SACrmdD
 
 #Für gestapelte Saeulendiagramm 
 sact<-c(SACmdD,SACrmdD,SACpdD,RSACJ)
-sact
+Sachsen<-sact
 SACtest<-matrix(sact, nrow=5,ncol=5, byrow = TRUE )
 SAtest
 #Entwicklung in 5 Jahren
-plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Sachsen",cex=1)
 lines(SACJahre,col="grey")
 
 #Aufteilung
 barplot(SACtest,beside=F,col=colors,main="Sachsen")
-legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+legend(4.5,60000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+SAC
 #-------------------------------------------------------------------------------#
 # 14. Bundesland Sachsen-Anhalt
 # Entwicklung von 2008 bis 2012
@@ -749,17 +757,17 @@ SAArmdD
 
 #Für gestapelte Saeulendiagramm 
 saat<-c(SAAmdD,SAArmdD,SAApdD,RSAAJ)
-saat
+SachsenAnhalt<-saat
 SAAtest<-matrix(saat, nrow=5,ncol=5, byrow = TRUE )
-SAtest
+SAAtest
 #Entwicklung in 5 Jahren
-plot(SACJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
-lines(SACJahre,col="grey")
+plot(SAAJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Sachsen-Anhalt",cex=1)
+lines(SAAJahre,col="grey")
 
 #Aufteilung
-barplot(SAAtest,beside=F,col=colors,main="Sachsen")
-legend(4.5,450000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+barplot(SAAtest,beside=F,col=colors,main="Sachsen-Anhalt")
+legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+SAA
 #-------------------------------------------------------------------------------#
 # 15. Bundesland Schleswig-Holstein
 # Entwicklung von 2008 bis 2012
@@ -802,7 +810,7 @@ SHrmdD
 
 #Für gestapelte Saeulendiagramm 
 sht<-c(SHmdD,SHrmdD,SHpdD,RSHJ)
-sht
+SchleswigHolstein<-sht
 SHtest<-matrix(sht, nrow=5,ncol=5, byrow = TRUE )
 SHtest
 #Entwicklung in 5 Jahren
@@ -810,8 +818,10 @@ plot(SHJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemb
 lines(SHJahre,col="grey")
 
 #Aufteilung
-barplot(SHtest,beside=F,col=colors,main="Sachsen")
+barplot(SHtest,beside=F,col=colors,main="Schleswig-Holstein")
 legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+
+SH
 
 #-------------------------------------------------------------------------------#
 
@@ -856,22 +866,30 @@ THrmdD
 
 #Für gestapelte Saeulendiagramm 
 tht<-c(THmdD,THrmdD,THpdD,RTHJ)
-tht
+Thüringen<-tht
+Thüringen
 THtest<-matrix(tht, nrow=5,ncol=5, byrow = TRUE )
 THtest
 #Entwicklung in 5 Jahren
-plot(THJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
+plot(THJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Thüringen",cex=1)
 lines(THJahre,col="grey")
 
 #Aufteilung
-barplot(THtest,beside=F,col=colors,main="Sachsen")
+barplot(THtest,beside=F,col=colors,main="Thüringen")
 legend(4.5,45000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
-
+TH
 #-------------------------------------------------------------------------------#
 
 #Ganz Deutschland Statistiken
 DE<-THJahre+SHJahre+SAAJahre+SACJahre+BWJahre+BYJahre+BERJahre+BRAJahre+BREMJahre+HHJahre+HEJahre+MVJahre+NSJahre+NRWJahre+RPJahre+SAJahre
-DE
 
+#Entwicklung in der BRD gesamt
 plot(DE,col=colors)
 lines(DE,col="grey")
+
+#Aufteilung der Umfallarten in der BRD gesamt
+ansicht.A<-THtest+SHtest+SAtest+SACtest+SAAtest+RPtest+NRWtest+MVtest+HEtest+HHtest+BREMtest+BRAtest+testBER+testBY+BWtest
+
+barplot(ansicht.A,beside=F,col=colors,main="Deutschland")
+legend(4.5,4800000,c("MD","RMD","PD","Drug","test"), col=colors,lty=c(1,1))
+
