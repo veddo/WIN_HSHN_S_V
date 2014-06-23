@@ -889,7 +889,8 @@ lines(DE,col="grey")
 
 #Aufteilung der Umfallarten in der BRD gesamt
 ansicht.A<-THtest+SHtest+SAtest+SACtest+SAAtest+RPtest+NRWtest+MVtest+HEtest+HHtest+BREMtest+BRAtest+testBER+testBY+BWtest
-
-barplot(ansicht.A,beside=F,col=colors,main="Deutschland")
+jpeg(filename="gesammt01.jpeg")
+a<-barplot(ansicht.A,beside=F,col=colors,main="Deutschland")
 legend(4.5,4800000,c("MD","RMD","PD","Drug","test"), col=colors,lty=c(1,1))
+jpeg(filename="gesammt01.jpeg")
 
