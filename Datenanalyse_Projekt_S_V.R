@@ -6,52 +6,88 @@ colors = c("yellow", "orange", "red", "blue","green")
 
 options(scipen=999)
 
-# 1.Bundesland Baden Württenberg 
-# Entwicklung von 2008 bis 2012 
+#Einlesen der Datei, System Windows 7
+# Working-Directory setzen
+setwd("C:/R_Dateien")
+# Einlesen des Datensatzes
+d <- read.csv2("unfalldaten.csv", header = T, sep = ";")
 
-BW<-subset(d,d$Bundesland =="Baden-Württemberg"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
+# Zusammenfassung des Datensatzes anzeigen
+summary(d)
+
+# 1.Bundesland Baden Württenberg----------------------------------------------------------------------------------
+# Entwicklung von 2008 bis 2012
+
+# Unfälle insgesamt
+BW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt" )
 BW
-
-#Unfälle unter dem Einfluss berausch. Mittel
-RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
-RBW
-#Vektoren  
-RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
+#Vektor
 BWJahre<-c(BW$X2008,BW$X2009,BW$X2010,BW$X2011,BW$X2012)
 BWJahre
+
+#Unfälle unter dem Einfluss berausch. Mittel
+RBW<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
+RBW
+#Vektor
+RBWJ<-c(RBW$X2008,RBW$X2009,RBW$X2010,RBW$X2011,RBW$X2012)
 RBWJ
+
 
 #Schwerwiegende Unfälle mit Sachschaden i.e.S
 BWmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Schwerwiegende Unfälle mit Sachschaden i.e.S" & d$Lage =="Insgesamt")
 BWmd
+#Vektor
 BWmdD<-c(BWmd$X2008,BWmd$X2009,BWmd$X2010,BWmd$X2011,BWmd$X2012)
 BWmdD
 
 #Unfälle mit Personenschaden
 BWpd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Unfälle mit Personenschaden" & d$Lage =="Insgesamt")
 BWpd
+#Vektor
 BWpdD<-c(BWpd$X2008,BWpd$X2009,BWpd$X2010,BWpd$X2011,BWpd$X2012)
 BWpdD
 
 #Übrige Sachschadensunfälle
 BWrmd<-subset(d,d$Bundesland =="Baden-Württemberg" & d$Unfälle =="Übrige Sachschadensunfälle" & d$Lage =="Insgesamt")
 BWrmd
+#Vektor
 BWrmdD<-c(BWrmd$X2008,BWrmd$X2009,BWrmd$X2010,BWrmd$X2011,BWrmd$X2012)
 BWrmdD
 
+#Unfälle innerorts
+BWinnerorts <- subset(d, d$Bundesland == "Baden-Württemberg" & d$Unfälle == "Insgesamt" & d$Lage == "innerorts")
+BWinnerorts
+#Vektor
+BWinnerortsV <- c(BWinnerorts$X2008, BWinnerorts$X2009, BWinnerorts$X2010, BWinnerorts$X2011, BWinnerorts$X2012)
+BWinnerortsV
 
-#Für gestapelte Saeulendiagramm 
+#Unfälle außerorts
+BWaußerorts <- subset(d, d$Bundesland == "Baden-Württemberg" & d$Unfälle == "Insgesamt" & d$Lage == "außerorts (ohne Autobahnen)")
+BWaußerorts
+#Vektor
+BWaußerortsV <- c(BWaußerorts$X2008, BWaußerorts$X2009, BWaußerorts$X2010, BWaußerorts$X2011, BWaußerorts$X2012)
+BWaußerortsV
+
+#Unfälle auf Autobahnen
+BWautobahn <- subset(d, d$Bundesland == "Baden-Württemberg" & d$Unfälle == "Insgesamt" & d$Lage == "auf Autobahnen")
+BWautobahn
+#Vektor
+BWautobahnV <- c(BWautobahn$X2008, BWautobahn$X2009, BWautobahn$X2010, BWautobahn$X2011, BWautobahn$X2012)
+BWautobahnV
+
+#Für gestapelte Saeulendiagramm
 t<-c(BWmdD,BWrmdD,BWpdD,RBWJ)
 BadenW<-t
 BadenW
 
-BWtest<-matrix(BadenW, nrow=5,ncol=5, byrow = TRUE )
+BWtest<-matrix(BadenW, nrow=4,ncol=5, byrow = TRUE )
 BWtest
 
 
 #Entwicklung in 5 Jahren
 plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
 lines(BWJahre,col="grey")
+
 
 #Aufteilung
 bw<-barplot(BWtest,a,beside=F,col=colors,main="Baden-Württenberg")
@@ -61,17 +97,17 @@ BW
 #----------------------------------------------------------------#
 
 # 2. Bundesland Bayern
-# Entwicklung von 2008 bis 2012 
-BY<-subset(d,d$Bundesland =="Bayern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+# Entwicklung von 2008 bis 2012
+BY<-subset(d,d$Bundesland =="Bayern" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BY
 
 # Unfälle insgesammt Bayern
 BYJahre<-c(BY$X2008,BY$X2009,BY$X2010,BY$X2011,BY$X2012)
 BYJahre
 #Drogeneinfluss
-RBY<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBY<-subset(d,d$Bundesland =="Bayern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RBY
-#Vektoren  
+#Vektoren
 RBYJ<-c(RBY$X2008,RBY$X2009,RBY$X2010,RBY$X2011,RBY$X2012)
 RBYJ
 
@@ -95,7 +131,7 @@ BYrmdD<-c(BYrmd$X2008,BYrmd$X2009,BYrmd$X2010,BYrmd$X2011,BYrmd$X2012)
 BYrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 byt<-c(BYmdD,BYrmdD,BYpdD,RBYJ)
 Bayern<-byt
 testBY<-matrix(byt, nrow=5,ncol=5, byrow = TRUE )
@@ -113,7 +149,7 @@ legend(4.5,244000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 #----------------------------------------------------------------#
 
 # 3.Bundesland Berlin
-# Entwicklung von 2008 bis 2012 
+# Entwicklung von 2008 bis 2012
 BER<-subset(d,d$Bundesland =="Berlin" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 BER
 
@@ -121,9 +157,9 @@ BERJahre<-c(BER$X2008,BER$X2009,BER$X2010,BER$X2011,BER$X2012)
 
 
 #Drogeneinfluss
-RBER<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBER<-subset(d,d$Bundesland =="Berlin" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RBER
-#Vektoren  
+#Vektoren
 RBERJ<-c(RBER$X2008,RBER$X2009,RBER$X2010,RBER$X2011,RBER$X2012)
 RBERJ
 
@@ -147,7 +183,7 @@ BERrmdD<-c(BERrmd$X2008,BERrmd$X2009,BERrmd$X2010,BERrmd$X2011,BERrmd$X2012)
 BERrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 bert<-c(BERmdD,BERrmdD,BERpdD,RBERJ)
 Berlin<-bert
 testBER<-matrix(bert, nrow=5,ncol=5, byrow = TRUE )
@@ -171,9 +207,9 @@ BRA
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RBRA<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBRA<-subset(d,d$Bundesland =="Brandenburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RBRAJ<-c(RBRA$X2008,RBRA$X2009,RBRA$X2010,RBRA$X2011,RBRA$X2012)
 RBRAJ
@@ -200,7 +236,7 @@ BRArmdD<-c(BRArmd$X2008,BRArmd$X2009,BRArmd$X2010,BRArmd$X2011,BRArmd$X2012)
 
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 brat<-c(BRAmdD,BRArmdD,BRApdD,RBRAJ)
 Brandenburg<-brat
 BRAtest<-matrix(brat, nrow=5,ncol=5, byrow = TRUE )
@@ -226,9 +262,9 @@ BREM
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RBREM<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RBREM<-subset(d,d$Bundesland =="Bremen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RBREM
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RBREMJ<-c(RBREM$X2008,RBREM$X2009,RBREM$X2010,RBREM$X2011,RBREM$X2012)
 RBREMJ
@@ -256,7 +292,7 @@ BREMrmdD<-c(BREMrmd$X2008,BREMrmd$X2009,BREMrmd$X2010,BREMrmd$X2011,BREMrmd$X201
 BREMrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 bremt<-c(BREMmdD,BREMrmdD,BREMpdD,RBREMJ)
 Bremen<-bremt
 BREMtest<-matrix(bremt, nrow=5,ncol=5, byrow = TRUE )
@@ -281,9 +317,9 @@ HH
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RHH<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RHH<-subset(d,d$Bundesland =="Hamburg" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RHH
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RHHJ<-c(RHH$X2008,RHH$X2009,RHH$X2010,RHH$X2011,RHH$X2012)
 RHHJ
@@ -311,7 +347,7 @@ HHrmdD<-c(HHrmd$X2008,HHrmd$X2009,HHrmd$X2010,HHrmd$X2011,HHrmd$X2012)
 HHrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 hht<-c(HHmdD,HHrmdD,HHpdD,RHHJ)
 Hamburg<-hht
 HHtest<-matrix(hht, nrow=5,ncol=5, byrow = TRUE )
@@ -329,13 +365,13 @@ HH
 # 7. Bundesland Hessen
 # Entwicklung von 2008 bis 2012
 
-HE<-subset(d,d$Bundesland =="Hessen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+HE<-subset(d,d$Bundesland =="Hessen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 HE
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RHE<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RHE<-subset(d,d$Bundesland =="Hessen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RHE
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RHEJ<-c(RHE$X2008,RHE$X2009,RHE$X2010,RHE$X2011,RHE$X2012)
 RHEJ
@@ -365,7 +401,7 @@ HErmdD<-c(HErmd$X2008,HErmd$X2009,HErmd$X2010,HErmd$X2011,HErmd$X2012)
 HErmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 het<-c(HEmdD,HErmdD,HEpdD,RHEJ)
 Hessen<-het
 HEtest<-matrix(het, nrow=5,ncol=5, byrow = TRUE )
@@ -384,14 +420,14 @@ HE
 # 8. Bundesland Mecklenburg-Vorpommern
 # Entwicklung von 2008 bis 2012
 
-MV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+MV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 MV
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RMV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RMV<-subset(d,d$Bundesland =="Mecklenburg-Vorpommern" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RMV
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RMVJ<-c(RMV$X2008,RMV$X2009,RMV$X2010,RMV$X2011,RMV$X2012)
 RMVJ
@@ -421,7 +457,7 @@ MVrmdD<-c(MVrmd$X2008,MVrmd$X2009,MVrmd$X2010,MVrmd$X2011,MVrmd$X2012)
 MVrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 mvt<-c(MVmdD,MVrmdD,MVpdD,RMVJ)
 MecklenburgVorpommern<-mvt
 MVtest<-matrix(mvt, nrow=5,ncol=5, byrow = TRUE )
@@ -439,13 +475,13 @@ MV
 # 9. Bundesland Niedersachsen
 # Entwicklung von 2008 bis 2012
 
-NS<-subset(d,d$Bundesland =="Niedersachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+NS<-subset(d,d$Bundesland =="Niedersachsen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 NS
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RNS<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RNS<-subset(d,d$Bundesland =="Niedersachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RNS
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RNSJ<-c(RNS$X2008,RNS$X2009,RNS$X2010,RNS$X2011,RNS$X2012)
 RNSJ
@@ -475,7 +511,7 @@ NSrmdD<-c(NSrmd$X2008,NSrmd$X2009,NSrmd$X2010,NSrmd$X2011,NSrmd$X2012)
 NSrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 nst<-c(NSmdD,NSrmdD,NSpdD,RNSJ)
 Niedersachsen<-nst
 NStest<-matrix(nst, nrow=5,ncol=5, byrow = TRUE )
@@ -494,13 +530,13 @@ NS
 # 10. Bundesland Nordrhein-Westfalen
 # Entwicklung von 2008 bis 2012
 
-NRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+NRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 NRW
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RNRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RNRW<-subset(d,d$Bundesland =="Nordrhein-Westfalen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RNRW
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RNRWJ<-c(RNRW$X2008,RNRW$X2009,RNRW$X2010,RNRW$X2011,RNRW$X2012)
 RNRWJ
@@ -530,7 +566,7 @@ NRWrmdD<-c(NRWrmd$X2008,NRWrmd$X2009,NRWrmd$X2010,NRWrmd$X2011,NRWrmd$X2012)
 NRWrmdD
 
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 nrwt<-c(NRWmdD,NRWrmdD,NRWpdD,RNRWJ)
 NordrheinWestfalen<-nrwt
 nrwt
@@ -549,15 +585,15 @@ NRW
 # 11. Rheinland-Pfalz
 # Entwicklung von 2008 bis 2012
 
-RP<-subset(d,d$Bundesland =="Rheinland-Pfalz"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+RP<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 RP
 
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RRP<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RRP<-subset(d,d$Bundesland =="Rheinland-Pfalz" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RRP
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RRPJ<-c(RRP$X2008,RRP$X2009,RRP$X2010,RRP$X2011,RRP$X2012)
 RRPJ
@@ -587,7 +623,7 @@ RPrmdD<-c(RPrmd$X2008,RPrmd$X2009,RPrmd$X2010,RPrmd$X2011,RPrmd$X2012)
 RPrmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 rpt<-c(RPmdD,RPrmdD,RPpdD,RRPJ)
 RheinlandPfalz<-rpt
 RPtest<-matrix(rpt, nrow=5,ncol=5, byrow = TRUE )
@@ -606,13 +642,13 @@ RP
 # 12. Bundesland Saarland
 # Entwicklung von 2008 bis 2012
 
-SA<-subset(d,d$Bundesland =="Saarland"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SA<-subset(d,d$Bundesland =="Saarland" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SA
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RSA<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSA<-subset(d,d$Bundesland =="Saarland" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RSA
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RSAJ<-c(RSA$X2008,RSA$X2009,RSA$X2010,RSA$X2011,RSA$X2012)
 RSAJ
@@ -642,7 +678,7 @@ SArmdD<-c(SArmd$X2008,SArmd$X2009,SArmd$X2010,SArmd$X2011,SArmd$X2012)
 SArmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 sat<-c(SAmdD,SArmdD,SApdD,RSAJ)
 Saarland<-sat
 SAtest<-matrix(sat, nrow=5,ncol=5, byrow = TRUE )
@@ -661,15 +697,15 @@ SA
 # 13. Bundesland Sachsen
 # Entwicklung von 2008 bis 2012
 
-SAC<-subset(d,d$Bundesland =="Sachsen"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SAC<-subset(d,d$Bundesland =="Sachsen" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SAC
 
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RSAC<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSAC<-subset(d,d$Bundesland =="Sachsen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RSAC
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RSACJ<-c(RSAC$X2008,RSAC$X2009,RSAC$X2010,RSAC$X2011,RSAC$X2012)
 RSACJ
@@ -699,7 +735,7 @@ SACrmdD<-c(SACrmd$X2008,SACrmd$X2009,SACrmd$X2010,SACrmd$X2011,SACrmd$X2012)
 SACrmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 sact<-c(SACmdD,SACrmdD,SACpdD,RSACJ)
 Sachsen<-sact
 SACtest<-matrix(sact, nrow=5,ncol=5, byrow = TRUE )
@@ -716,16 +752,16 @@ SAC
 # 14. Bundesland Sachsen-Anhalt
 # Entwicklung von 2008 bis 2012
 
-SAA<-subset(d,d$Bundesland =="Sachsen-Anhalt"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SAA<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SAA
 
 SAAJahre<-c(SAA$X2008,SAA$X2009,SAA$X2010,SAA$X2011,SAA$X2012)
 
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RSAA<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSAA<-subset(d,d$Bundesland =="Sachsen-Anhalt" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RSAA
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RSAAJ<-c(RSAA$X2008,RSAA$X2009,RSAA$X2010,RSAA$X2011,RSAA$X2012)
 RSAAJ
@@ -755,7 +791,7 @@ SAArmdD<-c(SAArmd$X2008,SAArmd$X2009,SAArmd$X2010,SAArmd$X2011,SAArmd$X2012)
 SAArmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 saat<-c(SAAmdD,SAArmdD,SAApdD,RSAAJ)
 SachsenAnhalt<-saat
 SAAtest<-matrix(saat, nrow=5,ncol=5, byrow = TRUE )
@@ -772,13 +808,13 @@ SAA
 # 15. Bundesland Schleswig-Holstein
 # Entwicklung von 2008 bis 2012
 
-SH<-subset(d,d$Bundesland =="Schleswig-Holstein"  & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
+SH<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Lage=="Insgesamt" & d$Unfälle =="Insgesamt")
 SH
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RSH<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RSH<-subset(d,d$Bundesland =="Schleswig-Holstein" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RSH
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RSHJ<-c(RSH$X2008,RSH$X2009,RSH$X2010,RSH$X2011,RSH$X2012)
 RSHJ
@@ -808,7 +844,7 @@ SHrmdD<-c(SHrmd$X2008,SHrmd$X2009,SHrmd$X2010,SHrmd$X2011,SHrmd$X2012)
 SHrmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 sht<-c(SHmdD,SHrmdD,SHpdD,RSHJ)
 SchleswigHolstein<-sht
 SHtest<-matrix(sht, nrow=5,ncol=5, byrow = TRUE )
@@ -832,9 +868,9 @@ TH<-subset(d,d$Bundesland =="Thüringen" & d$Lage=="Insgesamt" & d$Unfälle =="I
 TH
 
 #Unfälle unter dem Einfluss berausch. Mittel
-RTH<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel"  &  d$Lage =="Insgesamt" )
+RTH<-subset(d,d$Bundesland =="Thüringen" & d$Unfälle =="Sonst. Unfälle unter dem Einfluss berausch. Mittel" & d$Lage =="Insgesamt" )
 RTH
-#Vektoren  
+#Vektoren
 #Rauschmittel
 RTHJ<-c(RTH$X2008,RTH$X2009,RTH$X2010,RTH$X2011,RTH$X2012)
 RTHJ
@@ -864,7 +900,7 @@ THrmdD<-c(THrmd$X2008,THrmd$X2009,THrmd$X2010,THrmd$X2011,THrmd$X2012)
 THrmdD
 #
 
-#Für gestapelte Saeulendiagramm 
+#Für gestapelte Saeulendiagramm
 tht<-c(THmdD,THrmdD,THpdD,RTHJ)
 Thüringen<-tht
 Thüringen
@@ -893,4 +929,3 @@ jpeg(filename="/vhx/Dokumente/R-Statistik/Projekt_S_V/Bilder/gesammt01.jpeg")
 barplot(ansicht.A,beside=F,col=colors,main="Deutschland")
 legend(4.5,4800000,c("MD","RMD","PD","Drug","test"), col=colors,lty=c(1,1))
 jpeg(filename="/vhx/Dokumente/R-Statistik/Projekt_S_V/Bilder/gesammt01.jpeg")
-
