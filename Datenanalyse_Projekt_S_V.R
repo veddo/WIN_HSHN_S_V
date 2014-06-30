@@ -76,7 +76,7 @@ BWautobahn
 BWautobahnV <- c(BWautobahn$X2008, BWautobahn$X2009, BWautobahn$X2010, BWautobahn$X2011, BWautobahn$X2012)
 BWautobahnV
 
-#Für gestapelte Saeulendiagramm
+#Für gestapelte Saeulendiagramm Unfallkategorie
 t<-c(BWmdD,BWrmdD,BWpdD,RBWJ)
 BadenW<-t
 BadenW
@@ -84,16 +84,40 @@ BadenW
 BWtest<-matrix(BadenW, nrow=4,ncol=5, byrow = TRUE )
 BWtest
 
+#Für gestapelte Saeulendiagramm Unfalllage
+BWUnfalllage <- c(BWinnerortsV,BWaußerortsV,BWautobahnV)
+BWUnfalllage
+
+BWUnfalllageMatrix <- matrix(BWUnfalllage, nrow=3, ncol=5, byrow = TRUE )
+BWUnfalllageMatrix
+
 
 #Entwicklung in 5 Jahren
-plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg",cex=1)
-lines(BWJahre,col="grey")
+plot(BWJahre,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Baden-Württemberg Gesamt",cex=1)
+lines(BWJahre,col="black")
+#jpeg(filename="01BWGesamt.jpeg")
 
 
-#Aufteilung
+
+# Entwicklung in 5 Jahren nach Unfallkategorie
+#Entwicklung in 5 Jahren
+par(mfrow=c(1,1))
+plot(BWrmdD, col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Übrige",cex=1)
+lines(BWrmdD,col="black")
+
+# Entwicklung in 5 Jahren nach Unfalllage
+plot(BWautobahnV, col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Autobahn",cex=1)
+lines(BWautobahnV, col="black")
+
+#Aufteilung Unfallkategorie
 bw<-barplot(BWtest,beside=F,col=colors,main="Baden-Württenberg")
-legend(0,0,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+legend(2,100000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
 BW
+
+#Aufteilung Unfalllage
+BWUnfalllageDarstellung <- barplot(BWUnfalllageMatrix,beside=F,col=colors,main="Baden-Württenberg")
+#legend(2,100000,c("MD","RMD","PD","Drug"), col=colors,lty=c(1,1))
+BWUnfalllageDarstellung
 
 
 #----------------------------------------------------------------#
@@ -225,11 +249,11 @@ BERaußerortsV <- c(BERaußerorts$X2008, BERaußerorts$X2009, BERaußerorts$X201
 BERaußerortsV
 
 #Unfälle auf Autobahnen
-BWautobahn <- subset(d, d$Bundesland == "Baden-Württemberg" & d$Unfälle == "Insgesamt" & d$Lage == "auf Autobahnen")
-BWautobahn
+BERautobahn <- subset(d, d$Bundesland == "Berlin" & d$Unfälle == "Insgesamt" & d$Lage == "auf Autobahnen")
+BERautobahn
 #Vektor
-BWautobahnV <- c(BWautobahn$X2008, BWautobahn$X2009, BWautobahn$X2010, BWautobahn$X2011, BWautobahn$X2012)
-BWautobahnV
+BERautobahnV <- c(BERautobahn$X2008, BERautobahn$X2009, BERautobahn$X2010, BERautobahn$X2011, BERautobahn$X2012)
+BERautobahnV
 
 #Für gestapelte Saeulendiagramm
 bert<-c(BERmdD,BERrmdD,BERpdD,RBERJ)
@@ -1232,15 +1256,55 @@ TH
 DE<-THJahre+SHJahre+SAAJahre+SACJahre+BWJahre+BYJahre+BERJahre+BRAJahre+BREMJahre+HHJahre+HEJahre+MVJahre+NSJahre+NRWJahre+RPJahre+SAJahre
 
 #Entwicklung in der BRD gesamt
-plot(DE,col=colors)
-lines(DE,col="grey")
+plot(DE,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Gesamt",cex=1)
+lines(DE,col="black")
 
 #Aufteilung der Umfallarten in der BRD gesamt
 ansicht.A<-THtest+SHtest+SAtest+SACtest+SAAtest+RPtest+NRWtest+MVtest+HEtest+HHtest+BREMtest+BRAtest+testBER+testBY+BWtest
-jpeg(filename="gesammt01.jpeg")
 barplot(ansicht.A,beside=F,col=colors,main="Deutschland")
 legend(4.5,4800000,c("MD","RMD","PD","Drug","test"), col=colors,lty=c(1,1))
-jpeg(filename="gesammt01.jpeg")
+
+#Ganz Deutschland Rauschmittel
+DERauschmittel <- RBWJ+RBYJ+RBERJ+RBRAJ+RBREMJ+RHHJ+RHEJ+RMVJ+RNSJ+RNRWJ+RRPJ+RSAJ+RSACJ+RSAAJ+RSHJ+RTHJ
+DERauschmittel
+plot(DERauschmittel,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Rauschmittel",cex=1)
+lines(DERauschmittel,col="black")
+
+#Ganz Deutschland Personenschaden
+DEPersonenschaden <- BWpdD+BYpdD+BERpdD+BRApdD+BREMpdD+HHpdD+HEpdD+MVpdD+NSpdD+NRWpdD+RPpdD+SApdD+SACpdD+SAApdD+SHpdD+THpdD
+DEPersonenschaden
+plot(DEPersonenschaden,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Personenschaden",cex=1)
+lines(DEPersonenschaden,col="black")
+
+#Ganz Deutschland Sachschaden
+DESachschaden <- BWmdD+BYmdD+BERmdD+BRAmdD+BREMmdD+HHmdD+HEmdD+MVmdD+NSmdD+NRWmdD+RPmdD+SAmdD+SACmdD+SAAmdD+SHmdD+THmdD
+DESachschaden
+plot(DESachschaden,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Sachschaden",cex=1)
+lines(DESachschaden,col="black")
+
+#Ganz Deutschland Übrige
+DEUebrige <- BWrmdD+BYrmdD+BERrmdD+BRArmdD+BREMrmdD+HHrmdD+HErmdD+MVrmdD+NSrmdD+NRWrmdD+RPrmdD+SArmdD+SACrmdD+SAArmdD+SHrmdD+THrmdD
+DEUebrige
+plot(DEUebrige,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Uebrige",cex=1)
+lines(DEUebrige,col="black")
+
+#Ganz Deutschland Innerorts
+DEInnerorts <- BWinnerortsV+BYinnerortsV+BERinnerortsV+BRAinnerortsV+BREMinnerortsV+HHinnerortsV+HEinnerortsV+MVinnerortsV+NSinnerortsV+NRWinnerortsV+RPinnerortsV+SAinnerortsV+SACinnerortsV+SAAinnerortsV+SHinnerortsV+THinnerortsV
+DEInnerorts
+plot(DEInnerorts,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Innerorts",cex=1)
+lines(DEInnerorts,col="black")
+
+#Ganz Deutschland Außerorts
+DEAußerorts <- BWaußerortsV+BYaußerortsV+BERaußerortsV+BRAaußerortsV+BREMaußerortsV+HHaußerortsV+HEaußerortsV+MVaußerortsV+NSaußerortsV+NRWaußerortsV+RPaußerortsV+SAaußerortsV+SACaußerortsV+SAAaußerortsV+SHaußerortsV+THaußerortsV
+DEAußerorts
+plot(DEAußerorts,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Außerorts",cex=1)
+lines(DEAußerorts,col="black")
+
+#Ganz Deutschland Autobahn
+DEAutobahn <- BWautobahnV+BYautobahnV+BERautobahnV+BRAautobahnV+BREMautobahnV+HHautobahnV+HEautobahnV+MVautobahnV+NSautobahnV+NRWautobahnV+RPautobahnV+SAautobahnV+SACautobahnV+SAAautobahnV+SHautobahnV+THautobahnV
+DEAutobahn
+plot(DEAutobahn,col=colors,ylab="Unfälle",xlab="Jahr",pch=16,main="Deutschland Autobahn",cex=1)
+lines(DEAutobahn,col="black")
 
 #----------------------------------------------------------------------------------------------------------#
 
@@ -1289,5 +1353,6 @@ shapiro.test(DatenSig$X2011 - DatenSig$X2010)
 shapiro.test(DatenSig$X2012 - DatenSig$X2011)
 
 # Vor allem bei §X2011 - $X2010 liegt eine Normalverteilung vor, bei den anderen nicht.
+# Daher ist der t.test eher ungeeignet
 
-# t.test
+
